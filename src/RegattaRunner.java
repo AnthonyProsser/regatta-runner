@@ -1,4 +1,6 @@
-public class regatta-runner {
+import backend.structures.Regatta;
+
+public class RegattaRunner {
     public static void main(String[] args) {
         //Load app
         //regatta files are saved locally
