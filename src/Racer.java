@@ -1,5 +1,3 @@
-package backend.structures;
-
 import java.util.ArrayList;
 
 public class Racer extends Person implements Stringable {
