@@ -25,3 +25,6 @@ replay_pid*
 
 # data files
 src/backend/data/*
+
+# mac files
+.DS_Store

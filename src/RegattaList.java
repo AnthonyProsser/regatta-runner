@@ -1,9 +1,4 @@
-package backend.structures;
-
 import java.util.ArrayList;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.io.IOException;
 
 public class RegattaList {
     private ArrayList<Regatta> regattas;
