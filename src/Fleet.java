@@ -21,8 +21,8 @@ public class Fleet implements Stringable {
         for (Boat boat : this.boats) {
             object += boat.stringify() + ",";
         }
-        object = object.substring(0, object.length() - 1); // Remove trailing comma
-        object += "]}";
+        object = this.boats.isEmpty() ? object + "]" : object.substring(0, object.length() - 1) + "]";
+        object += "}";
         return object;
     }
 
@@ -31,14 +31,12 @@ public class Fleet implements Stringable {
         int nameEndIndex = string.indexOf("\"", nameIndex);
         String name = string.substring(nameIndex, nameEndIndex);
 
-        int boatsIndex = string.indexOf("\"boats\": [") + 11;
+        int boatsIndex = string.indexOf("\"boats\": [") + 10;
         int boatsEndIndex = string.indexOf("]", boatsIndex);
         String boatsString = string.substring(boatsIndex, boatsEndIndex);
-        String[] boatsArray = boatsString.split(","); // Split into individual boat strings
         ArrayList<Boat> boats = new ArrayList<>();
-        for (String boatString : boatsArray) {
-            Boat boat = Boat.load(boatString);
-            boats.add(boat);
+        if (!boatsString.isBlank()) {
+            boats.add(Boat.load(boatsString));
         }
         Fleet fleet = new Fleet(name);
         for (Boat boat : boats) {

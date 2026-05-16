@@ -26,13 +26,13 @@ public class RuleSet implements Stringable {
         for (String courseType : this.courseTypes) {
             object += "\"" + courseType + "\",";
         }
-        object = object.substring(0, object.length() - 1); // Remove trailing comma
-        object += "]}";
+        object = this.courseTypes.isEmpty() ? object + "]" : object.substring(0, object.length() - 1) + "]";
+        object += "}";
         return object;
     }
 
     public static RuleSet load(String string) {
-        int racesPerThrowoutIndex = string.indexOf("\"racesPerThrowout\": ") + 21;
+        int racesPerThrowoutIndex = string.indexOf("\"racesPerThrowout\": ") + 20;
         int racesPerThrowoutEndIndex = string.indexOf(",", racesPerThrowoutIndex);
         int racesPerThrowout = Integer.parseInt(string.substring(racesPerThrowoutIndex, racesPerThrowoutEndIndex));
         
@@ -40,7 +40,7 @@ public class RuleSet implements Stringable {
         int startSequenceLengthEndIndex = string.indexOf(",", startSequenceLengthIndex);
         int startSequenceLength = Integer.parseInt(string.substring(startSequenceLengthIndex, startSequenceLengthEndIndex));
 
-        int maxTimeLimitIndex = string.indexOf("\"maxTimeLimit\": ") + 17;
+        int maxTimeLimitIndex = string.indexOf("\"maxTimeLimit\": ") + 16;
         int maxTimeLimitEndIndex = string.indexOf(",", maxTimeLimitIndex);
         int maxTimeLimit = Integer.parseInt(string.substring(maxTimeLimitIndex, maxTimeLimitEndIndex));
 

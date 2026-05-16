@@ -36,13 +36,11 @@ public class Regatta implements Stringable {
         RuleSet ruleSet = RuleSet.load(ruleSetString);
 
         int fleetsIndex = string.indexOf("\"fleets\": [") + 11;
-        int fleetsEndIndex = string.indexOf("]", fleetsIndex);
+        int fleetsEndIndex = string.lastIndexOf("]");
         String fleetsString = string.substring(fleetsIndex, fleetsEndIndex);
-        String[] fleetsArray = fleetsString.split(","); // Split into individual fleet strings
         ArrayList<Fleet> fleets = new ArrayList<>();
-        for (String fleetString : fleetsArray) {
-            Fleet fleet = Fleet.load(fleetString);
-            fleets.add(fleet);
+        if (!fleetsString.isBlank()) {
+            fleets.add(Fleet.load(fleetsString));
         }
         Regatta regatta = new Regatta(name, ruleSet, fleets);
         return regatta;
